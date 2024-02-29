@@ -1,0 +1,19 @@
+version: '2'
+services:
+  servizioPostgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: passdb
+    ports:
+      - 3001:5432
+
+  taskfy:
+    image: taskfy:test
+    environment:
+      DB_HOST: servizioPostgres  # Utilizza il nome del servizio PostgreSQL come hostname
+      DB_USERNAME: postgres
+      DB_NAME: postgres
+      DB_PASS: passdb
+    ports:
+      - 8080:8080
